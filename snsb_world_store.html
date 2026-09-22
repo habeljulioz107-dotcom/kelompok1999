@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNSB WORLD - Store Clone</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            gray: '#171717',
+                            light: '#f5f5f7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar and utilities */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+    </style>
+</head>
+<body class="bg-white text-brand-black font-sans antialiased selection:bg-black selection:text-white">
+
+    <div class="bg-brand-black text-white text-[11px] font-medium tracking-widest text-center py-2 px-4 uppercase">
+        Worldwide Shipping • Free Express Shipping on Orders Over IDR 1.500.000
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-brand-black focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-2">
+                <a href="#" class="font-display font-bold text-2xl tracking-tighter uppercase">SNSB WORLD</a>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#shop" class="hover:text-gray-500 transition-colors pb-1 border-b-2 border-black">Frontpage</a>
+                <a href="#shop" onclick="filterProducts('all')" class="hover:text-gray-500 transition-colors">All Collection</a>
+                <a href="#shop" onclick="filterProducts('tshirt')" class="hover:text-gray-500 transition-colors">T-Shirts</a>
+                <a href="#shop" onclick="filterProducts('outerwear')" class="hover:text-gray-500 transition-colors">Outerwear</a>
+                <a href="#shop" onclick="filterProducts('accessories')" class="hover:text-gray-500 transition-colors">Accessories</a>
+            </nav>
+
+            <!-- Actions (Search & Cart) -->
+            <div class="flex items-center space-x-4">
+                <button onclick="openSearchModal()" class="p-2 hover:opacity-75 transition-opacity" title="Search">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <button onclick="toggleCartDrawer()" class="relative p-2 hover:opacity-75 transition-opacity flex items-center space-x-1" title="Cart">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span id="cart-badge" class="absolute top-1 right-0 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative bg-brand-light py-16 md:py-24 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-xs font-semibold tracking-widest uppercase bg-black text-white px-3 py-1 rounded-full mb-4 inline-block">New Drop Collection</span>
+            <h1 class="font-display font-bold text-4xl sm:text-6xl tracking-tight uppercase max-w-3xl mx-auto mt-2">OBSCURA & DECAY</h1>
+            <p class="text-gray-600 max-w-xl mx-auto mt-4 text-sm sm:text-base font-normal">Explore our latest archive featuring heavy-weight cotton blends, distressed hardware details, and utilitarian streetwear cuts.</p>
+        </div>
+    </section>
+
+    <main id="shop" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b border-gray-200 pb-4">
+            <div>
+                <h2 class="font-display font-bold text-2xl uppercase tracking-wide">Frontpage Collection</h2>
+                <p class="text-xs text-gray-500 mt-1"><span id="product-count">0</span> products available</p>
+            </div>
+            <!-- Filter buttons -->
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0 text-xs uppercase font-medium">
+                <button onclick="filterProducts('all')" class="filter-btn px-4 py-2 bg-black text-white rounded transition-all">All</button>
+                <button onclick="filterProducts('tshirt')" class="filter-btn px-4 py-2 bg-gray-100 text-black hover:bg-gray-200 rounded transition-all">T-Shirts</button>
+                <button onclick="filterProducts('outerwear')" class="filter-btn px-4 py-2 bg-gray-100 text-black hover:bg-gray-200 rounded transition-all">Outerwear</button>
+                <button onclick="filterProducts('accessories')" class="filter-btn px-4 py-2 bg-gray-100 text-black hover:bg-gray-200 rounded transition-all">Accessories</button>
+            </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10">
+            <!-- Products will be injected dynamically via JS -->
+        </div>
+    </main>
+
+    <footer class="bg-brand-black text-white pt-16 pb-12 mt-20 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div>
+                <h3 class="font-display font-bold text-lg uppercase tracking-wider mb-4">SNSB WORLD</h3>
+                <p class="text-gray-400 text-xs leading-relaxed">Contemporary streetwear brand focusing on raw aesthetics, structural silhouettes, and uncompromising quality standards.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-xs uppercase tracking-widest text-gray-400 mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white transition">Search Catalog</a></li>
+                    <li><a href="#" class="hover:text-white transition">Terms & Conditions</a></li>
+                    <li><a href="#" class="hover:text-white transition">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white transition">Track Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-xs uppercase tracking-widest text-gray-400 mb-4">Store Location</h4>
+                <p class="text-sm text-gray-300">Jakarta Selatan, Indonesia<br>Flagship Store: Senopati Raya No. 42</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-xs uppercase tracking-widest text-gray-400 mb-4">Newsletter</h4>
+                <p class="text-xs text-gray-400 mb-3">Subscribe to get notified about secret drops and exclusive sales.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Enter your email" class="bg-gray-900 border border-gray-700 px-3 py-2 text-sm text-white focus:outline-none focus:border-white w-full rounded-l">
+                    <button onclick="showNotification('Thank you for subscribing!')" class="bg-white text-black px-4 py-2 text-xs uppercase font-bold tracking-wider rounded-r hover:bg-gray-200 transition">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+            &copy; 2026 SNSB WORLD. All Rights Reserved. Built as an Interactive Storefront Clone.
+        </div>
+    </footer>
+
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                    <h2 class="font-display font-bold text-lg uppercase">Your Cart (<span id="drawer-count">0</span>)</h2>
+                    <button onclick="toggleCartDrawer()" class="p-2 text-gray-400 hover:text-black">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Cart items will be rendered here -->
+                </div>
+                <div class="border-t border-gray-100 p-6 bg-gray-50">
+                    <div class="flex justify-between text-base font-semibold mb-4">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">IDR 0</span>
+                    </div>
+                    <p class="text-[11px] text-gray-500 mb-4">Shipping & taxes calculated at checkout.</p>
+                    <button onclick="checkoutCart()" class="w-full bg-black text-white py-3 rounded text-xs uppercase font-bold tracking-widest hover:bg-gray-800 transition">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="quickview-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div onclick="closeQuickView()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-lg max-w-3xl w-full overflow-hidden shadow-2xl z-10 grid grid-cols-1 md:grid-cols-2">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 z-20 bg-white/80 p-2 rounded-full hover:bg-black hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="bg-gray-100 aspect-square">
+                <img id="modal-img" src="" alt="Product" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                    <span id="modal-badge" class="text-[10px] font-bold uppercase bg-black text-white px-2 py-0.5 rounded"></span>
+                    <h3 id="modal-title" class="font-display font-bold text-2xl uppercase mt-2"></h3>
+                    <p id="modal-price" class="text-lg font-semibold mt-1 text-gray-900"></p>
+                    <p id="modal-desc" class="text-xs text-gray-600 mt-4 leading-relaxed"></p>
+                    
+                    <!-- Size Selector -->
+                    <div class="mt-6">
+                        <label class="block text-xs uppercase font-bold tracking-wider mb-2">Select Size</label>
+                        <div id="modal-sizes" class="flex gap-2">
+                            <!-- Sizes -->
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <button id="modal-add-btn" onclick="addCurrentProductToCart()" class="w-full bg-black text-white py-3 rounded text-xs uppercase font-bold tracking-wider hover:bg-gray-800 transition">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="search-modal" class="fixed inset-0 z-50 bg-white/95 backdrop-blur-md hidden flex flex-col p-6 sm:p-12">
+        <div class="max-w-3xl mx-auto w-full">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="font-display font-bold text-xl uppercase tracking-wider">Search Catalog</h3>
+                <button onclick="closeSearchModal()" class="p-2 text-black hover:opacity-75">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="relative">
+                <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Search for tees, hoodies, bags..." class="w-full border-b-2 border-black py-3 text-lg sm:text-2xl font-medium focus:outline-none bg-transparent">
+            </div>
+            <div id="search-results" class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-[60vh] overflow-y-auto">
+                <!-- Search results injected here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-black text-white px-6 py-3 rounded shadow-2xl text-xs uppercase tracking-wider font-bold transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none">
+        <span id="toast-msg">Item added to cart</span>
+    </div>
+
+    <script>
+        // Product Catalog Data inspired by SNSB World collection
+        const products = [
+            {
+                id: 1,
+                name: "HEAVYWEIGHT TEE - OBSCURA BLACK",
+                category: "tshirt",
+                price: 485000,
+                badge: "Best Seller",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+                desc: "Crafted from custom 280gsm organic heavy cotton. Features vintage enzyme wash effect, distressed rib collar, and minimalist tonal chest typography.",
+                sizes: ["S", "M", "L", "XL"]
+            },
+            {
+                id: 2,
+                name: "UTILITY CARGO PANTS - DARK KHAKI",
+                category: "outerwear",
+                price: 950000,
+                badge: "New Drop",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+                desc: "Relaxed-fit utilitarian cargo trousers equipped with multi-pocket configuration, adjustable bungee cord hems, and reinforced knee paneling.",
+                sizes: ["30", "32", "34", "36"]
+            },
+            {
+                id: 3,
+                name: "DISTRESSED HOODIE - ASH GREY",
+                category: "outerwear",
+                price: 1150000,
+                badge: "Sold Out",
+                isSoldOut: true,
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+                desc: "Double-layered heavyweight fleece hoodie featuring custom manual distressing along cuffs and hem. Oversized boxy silhouette.",
+                sizes: ["S", "M", "L", "XL"]
+            },
+            {
+                id: 4,
+                name: "CROSSBODY TECH BAG - MATTE BLACK",
+                category: "accessories",
+                price: 420000,
+                badge: "Limited",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+                desc: "Water-resistant Cordura nylon body bag equipped with Fidlock magnetic buckles, weather-sealed zippers, and detachable modular compartments.",
+                sizes: ["One Size"]
+            },
+            {
+                id: 5,
+                name: "GRAPHIC BOXING TEE - WHITE",
+                category: "tshirt",
+                price: 495000,
+                badge: "",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+                desc: "Screen-printed archival graphic on pre-shrunk 240gsm combed cotton. Finished with custom woven label on lower left hem.",
+                sizes: ["S", "M", "L", "XL"]
+            },
+            {
+                id: 6,
+                name: "NYLON WINDBREAKER - OLIVE",
+                category: "outerwear",
+                price: 1250000,
+                badge: "New Drop",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+                desc: "Lightweight weather-proof shell jacket featuring packable hood, dual-way YKK zipper, and elasticated cuffs.",
+                sizes: ["M", "L", "XL"]
+            },
+            {
+                id: 7,
+                name: "METALLIC BUCKLE BELT",
+                category: "accessories",
+                price: 275000,
+                badge: "",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1624222247344-550fb60fa835?auto=format&fit=crop&w=800&q=80",
+                desc: "Industrial grade webbing belt fitted with custom laser-etched quick-release metal buckle.",
+                sizes: ["Adjustable"]
+            },
+            {
+                id: 8,
+                name: "OVERSIZED WASHED TEE - CHARCOAL",
+                category: "tshirt",
+                price: 485000,
+                badge: "",
+                isSoldOut: false,
+                image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+                desc: "Acid washed 280gsm cotton jersey designed with dropped shoulders and relaxed boxy drape.",
+                sizes: ["S", "M", "L", "XL"]
+            }
+        ];
+
+        let cart = [];
+        let currentSelectedProduct = null;
+        let selectedSize = '';
+
+        // Format currency to IDR
+        function formatIDR(amount) {
+            return 'IDR ' + amount.toLocaleString('id-ID');
+        }
+
+        // Render products into grid
+        function renderProducts(itemsToRender) {
+            const grid = document.getElementById('product-grid');
+            document.getElementById('product-count').innerText = itemsToRender.length;
+            
+            if(itemsToRender.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-16 text-center text-gray-400 text-sm uppercase">No products found in this category.</div>`;
+                return;
+            }
+
+            grid.innerHTML = itemsToRender.map(p => `
+                <div class="group flex flex-col">
+                    <div class="relative bg-gray-100 aspect-[3/4] overflow-hidden mb-3 cursor-pointer" onclick="openQuickView(${p.id})">
+                        ${p.badge ? `<span class="absolute top-2 left-2 z-10 bg-black text-white text-[10px] font-bold uppercase px-2 py-1">${p.badge}</span>` : ''}
+                        ${p.isSoldOut ? `<span class="absolute top-2 right-2 z-10 bg-gray-900/80 text-white text-[10px] font-bold uppercase px-2 py-1">Sold Out</span>` : ''}
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/40 to-transparent">
+                            <button class="w-full bg-white text-black py-2 text-xs uppercase tracking-wider font-bold hover:bg-black hover:text-white transition shadow">Quick View</button>
+                        </div>
+                    </div>
+                    <h3 class="text-xs font-semibold tracking-wide uppercase truncate">${p.name}</h3>
+                    <p class="text-xs text-gray-500 mt-1">${formatIDR(p.price)}</p>
+                </div>
+            `).join('');
+        }
+
+        // Filter products by category
+        function filterProducts(category) {
+            // Update active button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-black', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-black');
+            });
+            event.target.classList.remove('bg-gray-100', 'text-black');
+            event.target.classList.add('bg-black', 'text-white');
+
+            if(category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Quick View Modal Controls
+        function openQuickView(id) {
+            currentSelectedProduct = products.find(p => p.id === id);
+            if(!currentSelectedProduct) return;
+
+            document.getElementById('modal-img').src = currentSelectedProduct.image;
+            document.getElementById('modal-title').innerText = currentSelectedProduct.name;
+            document.getElementById('modal-price').innerText = formatIDR(currentSelectedProduct.price);
+            document.getElementById('modal-desc').innerText = currentSelectedProduct.desc;
+            document.getElementById('modal-badge').innerText = currentSelectedProduct.badge || 'New';
+            
+            const sizesContainer = document.getElementById('modal-sizes');
+            selectedSize = currentSelectedProduct.sizes[0];
+            sizesContainer.innerHTML = currentSelectedProduct.sizes.map((size, idx) => `
+                <button onclick="selectSize('${size}')" id="size-btn-${size}" class="size-btn border px-4 py-2 text-xs uppercase font-medium rounded ${idx === 0 ? 'border-black bg-black text-white' : 'border-gray-300 hover:border-black'}">${size}</button>
+            `).join('');
+
+            const addBtn = document.getElementById('modal-add-btn');
+            if(currentSelectedProduct.isSoldOut) {
+                addBtn.disabled = true;
+                addBtn.innerText = "Sold Out";
+                addBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                addBtn.disabled = false;
+                addBtn.innerText = "Add to Cart";
+                addBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            document.getElementById('quickview-modal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickview-modal').classList.add('hidden');
+        }
+
+        function selectSize(size) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.remove('border-black', 'bg-black', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            const activeBtn = document.getElementById(`size-btn-${size}`);
+            activeBtn.classList.remove('border-gray-300');
+            activeBtn.classList.add('border-black', 'bg-black', 'text-white');
+        }
+
+        // Cart Drawer Operations
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function addCurrentProductToCart() {
+            if(!currentSelectedProduct || currentSelectedProduct.isSoldOut) return;
+
+            const existingItem = cart.find(item => item.id === currentSelectedProduct.id && item.size === selectedSize);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({
+                    id: currentSelectedProduct.id,
+                    name: currentSelectedProduct.name,
+                    price: currentSelectedProduct.price,
+                    image: currentSelectedProduct.image,
+                    size: selectedSize,
+                    qty: 1
+                });
+            }
+
+            updateCartBadge();
+            closeQuickView();
+            toggleCartDrawer();
+            showNotification(`Added ${currentSelectedProduct.name} (${selectedSize})`);
+        }
+
+        function updateCartBadge() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-badge').innerText = totalQty;
+            document.getElementById('drawer-count').innerText = totalQty;
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            if(cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-gray-400 text-xs uppercase">Your cart is currently empty.</div>`;
+                document.getElementById('cart-subtotal').innerText = formatIDR(0);
+                return;
+            }
+
+            container.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center space-x-4 border-b border-gray-100 pb-4">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover bg-gray-100 rounded">
+                    <div class="flex-1">
+                        <h4 class="text-xs font-bold uppercase">${item.name}</h4>
+                        <p class="text-[11px] text-gray-500 mt-0.5">Size: ${item.size}</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-xs font-semibold">${formatIDR(item.price)}</span>
+                            <div class="flex items-center space-x-2 border border-gray-200 rounded px-2 py-1">
+                                <button onclick="updateQty(${index}, -1)" class="text-xs font-bold px-1">-</button>
+                                <span class="text-xs">${item.qty}</span>
+                                <button onclick="updateQty(${index}, 1)" class="text-xs font-bold px-1">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-subtotal').innerText = formatIDR(subtotal);
+        }
+
+        function updateQty(index, change) {
+            cart[index].qty += change;
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function checkoutCart() {
+            if(cart.length === 0) {
+                showNotification("Your cart is empty!");
+                return;
+            }
+            showNotification("Redirecting to secure Shopify checkout gateway...");
+            setTimeout(() => {
+                cart = [];
+                updateCartBadge();
+                toggleCartDrawer();
+                showNotification("Order simulation completed successfully!");
+            }, 2000);
+        }
+
+        // Search Modal Operations
+        function openSearchModal() {
+            document.getElementById('search-modal').classList.remove('hidden');
+            document.getElementById('search-input').focus();
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+            document.getElementById('search-results').innerHTML = '';
+            document.getElementById('search-input').value = '';
+        }
+
+        function handleSearch(query) {
+            const resultsContainer = document.getElementById('search-results');
+            if(!query.trim()) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+
+            const matched = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.category.toLowerCase().includes(query.toLowerCase()));
+            
+            if(matched.length === 0) {
+                resultsContainer.innerHTML = `<div class="col-span-full text-center text-gray-400 text-xs uppercase py-8">No products matched "${query}"</div>`;
+                return;
+            }
+
+            resultsContainer.innerHTML = matched.map(p => `
+                <div onclick="closeSearchModal(); openQuickView(${p.id});" class="group cursor-pointer">
+                    <div class="bg-gray-100 aspect-square overflow-hidden mb-2">
+                        <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition">
+                    </div>
+                    <h4 class="text-xs font-bold uppercase truncate">${p.name}</h4>
+                    <p class="text-[11px] text-gray-500">${formatIDR(p.price)}</p>
+                </div>
+            `).join('');
+        }
+
+        // Toast Notification System
+        function showNotification(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // Initial render on load
+        window.onload = function() {
+            renderProducts(products);
+        };
+    </script>
+
+</body>
+</html>
