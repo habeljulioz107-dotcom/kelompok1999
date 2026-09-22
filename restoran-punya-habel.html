@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Makan Enak - Restoran Indonesia Legendaris</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf8f6',
+                            100: '#fbe8e6',
+                            600: '#c2410c',
+                            700: '#9a3412',
+                            800: '#7c2d12',
+                            900: '#991b1b',
+                        },
+                        gold: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brand-900 text-white w-10 h-10 rounded-full flex items-center justify-center font-serif font-bold text-xl shadow-md">M</div>
+                    <div>
+                        <span class="font-serif font-bold text-xl sm:text-2xl text-stone-900 tracking-wider">Makan Enak</span>
+                        <span class="block text-[10px] tracking-widest text-gold-600 font-semibold uppercase">Authentic Indonesian Taste</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="font-medium text-stone-700 hover:text-brand-700 transition">Beranda</a>
+                    <a href="#about" class="font-medium text-stone-700 hover:text-brand-700 transition">Tentang Kami</a>
+                    <a href="#menu" class="font-medium text-stone-700 hover:text-brand-700 transition">Menu Pilihan</a>
+                    <a href="#gallery" class="font-medium text-stone-700 hover:text-brand-700 transition">Galeri</a>
+                    <a href="#contact" class="font-medium text-stone-700 hover:text-brand-700 transition">Kontak</a>
+                </nav>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#reservation" class="bg-brand-700 hover:bg-brand-800 text-white font-medium px-5 py-2.5 rounded-full shadow-md transition transform hover:-translate-y-0.5">
+                        <i class="fa-regular fa-calendar-days mr-2"></i> Reservasi
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-stone-700 hover:text-brand-700 focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-stone-100 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#home" class="block py-2 text-stone-700 font-medium mobile-link">Beranda</a>
+            <a href="#about" class="block py-2 text-stone-700 font-medium mobile-link">Tentang Kami</a>
+            <a href="#menu" class="block py-2 text-stone-700 font-medium mobile-link">Menu Pilihan</a>
+            <a href="#gallery" class="block py-2 text-stone-700 font-medium mobile-link">Galeri</a>
+            <a href="#contact" class="block py-2 text-stone-700 font-medium mobile-link">Kontak</a>
+            <div class="pt-2">
+                <a href="#reservation" class="block text-center bg-brand-700 text-white font-medium py-2.5 rounded-full mobile-link">Reservasi Meja</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative pt-28 pb-20 md:pt-36 md:pb-32 bg-stone-900 text-white overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-45">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80" alt="Restaurant Background" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/60 to-transparent z-10"></div>
+        
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="max-w-3xl mx-auto md:mx-0">
+                <span class="inline-block bg-gold-500/20 text-gold-500 border border-gold-500/30 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6">
+                    Sejak Puluhan Tahun Menemani Keluarga Indonesia
+                </span>
+                <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                    Kelezatan Kuliner Tradisional <span class="text-gold-500 italic">Autentik</span>
+                </h1>
+                <p class="text-stone-300 text-base sm:text-lg lg:text-xl mb-8 leading-relaxed">
+                    Nikmati sajian khas nusantara legendaris dengan resep rempah pilihan turun-temurun yang menghadirkan cita rasa kaya di setiap gigitan.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#menu" class="bg-brand-700 hover:bg-brand-800 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition flex items-center justify-center space-x-2">
+                        <span>Lihat Menu Kami</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#reservation" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-semibold px-8 py-4 rounded-full transition flex items-center justify-center">
+                        Pesan Meja Sekarang
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-3xl sm:text-4xl font-bold text-gold-500">30+</p>
+                    <p class="text-xs sm:text-sm text-stone-400 mt-1">Tahun Pengalaman</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-3xl sm:text-4xl font-bold text-gold-500">100%</p>
+                    <p class="text-xs sm:text-sm text-stone-400 mt-1">Bumbu Alami Pilihan</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-3xl sm:text-4xl font-bold text-gold-500">50+</p>
+                    <p class="text-xs sm:text-sm text-stone-400 mt-1">Menu Khas Nusantara</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-3xl sm:text-4xl font-bold text-gold-500">4.9</p>
+                    <p class="text-xs sm:text-sm text-stone-400 mt-1">Rating Pelanggan Setia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Suasana Makan Enak" class="w-full h-[450px] object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-2/3 h-2/3 bg-brand-100 rounded-2xl -z-0 hidden sm:block"></div>
+                    <div class="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-6 rounded-xl shadow-lg border border-stone-100 max-w-xs">
+                        <div class="flex items-center space-x-3 text-gold-500 mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-stone-800 font-semibold text-sm">"Cita rasa masakan rumah yang otentik dan selalu konsisten dari dulu."</p>
+                        <span class="text-xs text-stone-500 mt-1 block">- Wisata Kuliner Indonesia</span>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-brand-700 font-semibold tracking-wider uppercase text-sm">Tentang Makan Enak</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-6">
+                        Menjaga Warisan Rasa Nusantara Sejak Lama
+                    </h2>
+                    <p class="text-stone-600 leading-relaxed mb-6">
+                        Makan Enak lahir dari kecintaan mendalam terhadap kekayaan kuliner Indonesia. Kami berkomitmen untuk menyajikan hidangan berkualitas tinggi dengan menggunakan racikan bumbu rempah pilihan murni tanpa pengawet buatan.
+                    </p>
+                    <p class="text-stone-600 leading-relaxed mb-8">
+                        Baik untuk acara keluarga, santap siang bersama rekan kerja, atau temu kenal spesial, suasana hangat dan ramah di restoran kami siap memberikan pengalaman bersantap yang tak terlupakan.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start space-x-3 p-4 rounded-xl bg-stone-50 border border-stone-100">
+                            <div class="bg-brand-700 text-white p-3 rounded-lg flex-shrink-0">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-stone-900 text-sm">Bumbu Autentik</h3>
+                                <p class="text-stone-500 text-xs mt-1">Resep turun-temurun dengan rempah pilihan terbaik.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-4 rounded-xl bg-stone-50 border border-stone-100">
+                            <div class="bg-brand-700 text-white p-3 rounded-lg flex-shrink-0">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-stone-900 text-sm">Higienis & Halal</h3>
+                                <p class="text-stone-500 text-xs mt-1">Diproses dengan standar kebersihan dan kehalalan tertinggi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-20 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-700 font-semibold tracking-wider uppercase text-sm">Menu Pilihan</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">
+                    Sajian Istimewa Kami
+                </h2>
+                <p class="text-stone-600">Pilih dari berbagai ragam menu favorit nusantara yang disajikan hangat dan segar setiap hari.</p>
+            </div>
+
+            <!-- Menu Category Filter Tabs -->
+            <div class="flex justify-center flex-wrap gap-2 mb-10" id="menu-filters">
+                <button onclick="filterMenu('all')" class="menu-filter-btn active bg-brand-700 text-white font-medium px-6 py-2.5 rounded-full text-sm transition shadow-sm">Semua Menu</button>
+                <button onclick="filterMenu('makanan')" class="menu-filter-btn bg-white text-stone-700 hover:bg-stone-200 font-medium px-6 py-2.5 rounded-full text-sm transition shadow-sm">Makanan Utama</button>
+                <button onclick="filterMenu('sup')" class="menu-filter-btn bg-white text-stone-700 hover:bg-stone-200 font-medium px-6 py-2.5 rounded-full text-sm transition shadow-sm">Sup & Soto</button>
+                <button onclick="filterMenu('minuman')" class="menu-filter-btn bg-white text-stone-700 hover:bg-stone-200 font-medium px-6 py-2.5 rounded-full text-sm transition shadow-sm">Minuman Segar</button>
+            </div>
+
+            <!-- Menu Items Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-category="makanan">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80" alt="Ayam Goreng Lengkuas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-brand-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Favorit</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-bold text-xl text-stone-900">Ayam Goreng Lengkuas Munik</h3>
+                            <span class="font-bold text-brand-700 text-lg">Rp 65.000</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6 flex-grow">Ayam kampung empuk dengan taburan serundeng lengkuas gurih dan sambal terasi khas.</p>
+                        <button onclick="openOrderModal('Ayam Goreng Lengkuas Munik', 'Rp 65.000')" class="w-full bg-stone-100 hover:bg-brand-700 hover:text-white text-stone-800 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Pesan Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-category="makanan">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80" alt="Rendang Daging Sapi" class="w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 bg-gold-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Best Seller</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-bold text-xl text-stone-900">Rendang Daging Sapi</h3>
+                            <span class="font-bold text-brand-700 text-lg">Rp 85.000</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6 flex-grow">Daging sapi pilihan dimasak perlahan berjam-jam dengan santan murni dan bumbu rempah kaya rasa.</p>
+                        <button onclick="openOrderModal('Rendang Daging Sapi', 'Rp 85.000')" class="w-full bg-stone-100 hover:bg-brand-700 hover:text-white text-stone-800 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Pesan Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-category="sup">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Soto Betawi" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-bold text-xl text-stone-900">Soto Betawi Istimewa</h3>
+                            <span class="font-bold text-brand-700 text-lg">Rp 75.000</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6 flex-grow">Daging sapi empuk dengan kuah santan gurih berempah khas Betawi, disajikan dengan emping dan sambal.</p>
+                        <button onclick="openOrderModal('Soto Betawi Istimewa', 'Rp 75.000')" class="w-full bg-stone-100 hover:bg-brand-700 hover:text-white text-stone-800 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Pesan Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-category="sup">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Sup Buntut" class="w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 bg-brand-700 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Favorit</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-bold text-xl text-stone-900">Sup Buntut Sapi</h3>
+                            <span class="font-bold text-brand-700 text-lg">Rp 95.000</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6 flex-grow">Buntut sapi pilihan lembut dengan kuah kaldu bening kaya rempah pilihan, wortel, kentang, dan taburan bawang goreng.</p>
+                        <button onclick="openOrderModal('Sup Buntut Sapi', 'Rp 95.000')" class="w-full bg-stone-100 hover:bg-brand-700 hover:text-white text-stone-800 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Pesan Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-category="makanan">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Gurame Bakar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-bold text-xl text-stone-900">Gurame Bakar Madu</h3>
+                            <span class="font-bold text-brand-700 text-lg">Rp 88.000</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6 flex-grow">Ikan gurame segar pilihan dibakar dengan olesan bumbu kecap manis madu dan sambal kecap pedas.</p>
+                        <button onclick="openOrderModal('Gurame Bakar Madu', 'Rp 88.000')" class="w-full bg-stone-100 hover:bg-brand-700 hover:text-white text-stone-800 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Pesan Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-category="minuman">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Es Campur" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif font-bold text-xl text-stone-900">Es Campur Munik</h3>
+                            <span class="font-bold text-brand-700 text-lg">Rp 32.000</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6 flex-grow">Minuman segar berisi aneka buah segar, agar-agar, cincau, disiram kuah santan dan sirup manis spesial.</p>
+                        <button onclick="openOrderModal('Es Campur Munik', 'Rp 32.000')" class="w-full bg-stone-100 hover:bg-brand-700 hover:text-white text-stone-800 font-semibold py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Pesan Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation" class="py-20 bg-stone-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80" alt="Restaurant Interior" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-stone-800/95 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border border-stone-700">
+                <div class="text-center mb-10">
+                    <span class="text-gold-500 font-semibold tracking-wider uppercase text-sm">Reservasi Meja</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2 mb-3">
+                        Rencanakan Kunjungan Anda
+                    </h2>
+                    <p class="text-stone-400 text-sm sm:text-base">Isi formulir di bawah ini untuk memesan meja terlebih dahulu dan nikmati kemudahan pelayanan kami.</p>
+                </div>
+
+                <form id="reservation-form" onsubmit="handleReservation(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Nama Lengkap</label>
+                            <input type="text" id="res-name" required placeholder="Masukkan nama Anda" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-gold-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Nomor Telepon / WhatsApp</label>
+                            <input type="tel" id="res-phone" required placeholder="Contoh: 081234567890" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-gold-500 transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Tanggal</label>
+                            <input type="date" id="res-date" required class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Waktu / Jam</label>
+                            <select id="res-time" required class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition">
+                                <option value="">Pilih Jam</option>
+                                <option value="11:00">11:00 WIB</option>
+                                <option value="13:00">13:00 WIB</option>
+                                <option value="15:00">15:00 WIB</option>
+                                <option value="17:00">17:00 WIB</option>
+                                <option value="19:00">19:00 WIB</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Jumlah Tamu</label>
+                            <select id="res-guests" required class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition">
+                                <option value="">Pilih Jumlah</option>
+                                <option value="1-2 Orang">1-2 Orang</option>
+                                <option value="3-4 Orang">3-4 Orang</option>
+                                <option value="5-8 Orang">5-8 Orang</option>
+                                <option value="> 8 Orang">> 8 Orang (Grup)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-stone-300 mb-2">Catatan Tambahan (Opsional)</label>
+                        <textarea id="res-notes" rows="3" placeholder="Contoh: Butuh kursi bayi, dekat jendela..." class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-gold-500 transition"></textarea>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="submit" class="w-full sm:w-auto bg-gold-500 hover:bg-gold-600 text-stone-950 font-bold px-10 py-4 rounded-full shadow-lg transition duration-300 transform hover:-translate-y-0.5">
+                            Konfirmasi Reservasi Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-700 font-semibold tracking-wider uppercase text-sm">Galeri Restoran</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mt-2 mb-4">
+                    Suasana & Sajian Munik
+                </h2>
+                <p class="text-stone-600">Intip kenyamanan ruangan serta kelezatan hidangan yang siap menyambut Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="rounded-2xl overflow-hidden shadow-md h-48 sm:h-64">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80" alt="Galeri 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-md h-48 sm:h-64">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Galeri 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-md h-48 sm:h-64">
+                    <img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&w=600&q=80" alt="Galeri 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-md h-48 sm:h-64">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Galeri 4" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-stone-950 text-white pt-20 pb-10 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-16 border-b border-stone-800">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="bg-brand-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-serif font-bold text-xl">M</div>
+                        <div>
+                            <span class="font-serif font-bold text-xl text-white tracking-wider">Makan Enak</span>
+                            <span class="block text-[10px] tracking-widest text-gold-500 font-semibold uppercase">Authentic Taste</span>
+                        </div>
+                    </div>
+                    <p class="text-stone-400 text-sm leading-relaxed mb-6">
+                        Destinasi utama kuliner tradisional Indonesia dengan cita rasa rempah autentik dan pelayanan ramah keluarga.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/fezzj_/" class="w-10 h-10 rounded-full bg-stone-900 hover:bg-brand-700 flex items-center justify-center text-stone-300 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-stone-900 hover:bg-brand-700 flex items-center justify-center text-stone-300 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-stone-900 hover:bg-brand-700 flex items-center justify-center text-stone-300 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-serif font-bold text-lg mb-6 text-gold-500">Jam Operasional</h3>
+                    <ul class="space-y-3 text-sm text-stone-400">
+                        <li class="flex justify-between border-b border-stone-900 pb-2">
+                            <span>Senin - Kamis:</span>
+                            <span class="text-stone-200 font-medium">10:00 - 22:00 WIB</span>
+                        </li>
+                        <li class="flex justify-between border-b border-stone-900 pb-2">
+                            <span>Jumat - Sabtu:</span>
+                            <span class="text-stone-200 font-medium">10:00 - 23:00 WIB</span>
+                        </li>
+                        <li class="flex justify-between border-b border-stone-900 pb-2">
+                            <span>Minggu / Hari Libur:</span>
+                            <span class="text-stone-200 font-medium">09:00 - 23:00 WIB</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-serif font-bold text-lg mb-6 text-gold-500">Hubungi Kami</h3>
+                    <ul class="space-y-4 text-sm text-stone-400">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot text-brand-700 mt-1"></i>
+                            <span>Jl. Matraman Raya No. 57, Jakarta Timur, Indonesia</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-brand-700"></i>
+                            <span>(021) 8581234 / +62 811-9876-5432</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-brand-700"></i>
+                            <span>info@fezzj.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500">
+                <p>&copy; 2026 Makan Enak. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-stone-300 transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-stone-300 transition">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl mx-4 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeOrderModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-xl font-bold p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <h3 class="font-serif font-bold text-2xl text-stone-900">Pesan Menu</h3>
+                <p class="text-stone-500 text-sm mt-1">Konfirmasi pesanan menu pilihan Anda</p>
+            </div>
+            
+            <div class="bg-stone-50 p-4 rounded-2xl mb-6 border border-stone-100">
+                <p class="text-xs text-stone-500 uppercase font-semibold">Menu Dipilih:</p>
+                <p id="modal-item-name" class="font-bold text-stone-900 text-lg">Ayam Goreng Lengkuas</p>
+                <p id="modal-item-price" class="text-brand-700 font-semibold text-sm">Rp 65.000</p>
+            </div>
+
+            <form onsubmit="submitOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Jumlah Porsi</label>
+                    <input type="number" id="order-qty" value="1" min="1" max="20" class="w-full bg-stone-100 border border-stone-200 rounded-xl px-4 py-2.5 text-stone-900 font-semibold focus:outline-none focus:border-brand-700">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Catatan Khusus (opsional)</label>
+                    <input type="text" id="order-note" placeholder="Misal: Tidak pakai pedas" class="w-full bg-stone-100 border border-stone-200 rounded-xl px-4 py-2.5 text-stone-900 text-sm focus:outline-none focus:border-brand-700">
+                </div>
+                <button type="submit" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+                    Kirim Pesanan via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-stone-900 text-white px-6 py-4 rounded-2xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <div id="toast-icon" class="text-green-400 text-lg"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+            <p id="toast-title" class="font-bold text-sm">Berhasil!</p>
+            <p id="toast-desc" class="text-xs text-stone-300">Pesan Anda telah kami terima.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // Menu filtering logic
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.menu-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-700', 'text-white');
+                btn.classList.add('bg-white', 'text-stone-700');
+            });
+            event.target.classList.remove('bg-white', 'text-stone-700');
+            event.target.classList.add('bg-brand-700', 'text-white');
+
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Order Modal Functions
+        let selectedItemName = '';
+        let selectedItemPrice = '';
+
+        function openOrderModal(name, price) {
+            selectedItemName = name;
+            selectedItemPrice = price;
+            document.getElementById('modal-item-name').innerText = name;
+            document.getElementById('modal-item-price').innerText = price;
+            document.getElementById('order-qty').value = 1;
+            document.getElementById('order-note').value = '';
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const qty = document.getElementById('order-qty').value;
+            const note = document.getElementById('order-note').value;
+            
+            const message = `Halo Makan Enak, saya ingin memesan:\n\n*${selectedItemName}* (${selectedItemPrice}) x ${qty}\nCatatan: ${note || '-'}\n\nMohon konfirmasinya. Terima kasih!`;
+            const whatsappUrl = `https://wa.me/6281198765432?text=${encodeURIComponent(message)}`;
+            
+            closeOrderModal();
+            showToast('Pesanan Disiapkan', 'Mengarahkan Anda ke WhatsApp Makan Enak...');
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 1000);
+        }
+
+        // Reservation Form Handler
+        function handleReservation(e) {
+            e.preventDefault();
+            const name = document.getElementById('res-name').value;
+            const phone = document.getElementById('res-phone').value;
+            const date = document.getElementById('res-date').value;
+            const time = document.getElementById('res-time').value;
+            const guests = document.getElementById('res-guests').value;
+            const notes = document.getElementById('res-notes').value;
+
+            const message = `Halo  Makan Enak, saya ingin reservasi meja:\n\nNama: ${name}\nNo Telp: ${phone}\nTanggal: ${date}\nJam: ${time} WIB\nJumlah Tamu: ${guests}\nCatatan: ${notes || '-'}\n\nMohon konfirmasi ketersediaan meja. Terima kasih!`;
+            const whatsappUrl = `https://wa.me/6281198765432?text=${encodeURIComponent(message)}`;
+
+            showToast('Reservasi Terkirim', 'Mengarahkan Anda ke WhatsApp untuk konfirmasi...');
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 1000);
+        }
+
+        // Toast Notification Helper
+        function showToast(title, desc) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-desc').innerText = desc;
+            
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
